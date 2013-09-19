@@ -9,6 +9,7 @@ argparse==1.2.1
 decorator==3.3.2
 distribute==0.6.34
 -e git+https://github.com/simon-weber/Unofficial-Google-Music-API.git@ce079ac47afad6bcd138cf0c7fd4f0d39a50f34c#egg=gmusicapi-dev
+gunicorn==18.0
 httplib2==0.8
 itsdangerous==0.23
 lxml==3.2.3
