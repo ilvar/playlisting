@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block title %}Step 2{% endblock title %}
+
+{% block playlist %}
+    <h2>{{ pl.name }}</h2>
+    <ol>
+        {% for t in pl.tracks %}
+            <li>
+                <b>{{ t.title }}</b>
+                {{ t.album }}
+                &mdash;
+                {{ t.artist }}
+            </li>
+        {% endfor %}
+    </ol>
+
+    <form action="/gmaa/move" method="POST">
+        <textarea name="pl_data" style="display: none">{{ pl.to_json() }}</textarea>
+        <p class="form-group">
+            <label>GMAA username</label>
+            <input type="text" name="username" class="form-control" placeholder="username" value="{{ request.form.username }}" />
+        </p>
+        <p class="form-group">
+            <label>GMAA password</label>
+            <input type="password" name="password" class="form-control" placeholder="password" />
+        </p>
+        <p class="form-group">
+            <button type="submit" class="btn btn-lg btn-success" >Move to GMAA &raquo;</button>
+        </p>
+    </form>
+{% endblock playlist %}
