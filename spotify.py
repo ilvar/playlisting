@@ -35,7 +35,7 @@ def get_spotify_playlist(playlist):
 
     playlist_name = re.search(r'<h1 itemprop="name">(.+)</h1>', playlist_br.response().read()).groups()[0]
 
-    pl = Playlist(playlist_name, playlist)
+    pl = Playlist(playlist_name.decode('utf8'), playlist)
 
     # http://docs.python.org/2/library/functions.html#filter
     track_links = filter(lambda x: x.url.startswith('/track/'), playlist_br.links())
@@ -70,7 +70,7 @@ def get_spotify_playlist(playlist):
         )
 
         pl.add_track(
-            Track(title, album, artist)
+            Track(title.decode('utf8'), album.decode('utf8'), artist.decode('utf8'))
         )
 
     return pl
