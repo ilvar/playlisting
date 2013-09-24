@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 from playlists import Playlist
 from spotify import get_spotify_playlist
 from gmusicapi.clients.mobileclient import Mobileclient
+from raven.contrib.flask import Sentry
+
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_AMBER_URL']
@@ -35,6 +37,9 @@ def gmaa_move():
     return render_template('ok.html', pl=pl)
 
 app.debug = True
+
+app.config['SENTRY_DSN'] = 'https://4e029df0c6dc4b0497add266d2666b6f:28cf80654387491697b110c61d0d055e@app.getsentry.com/13423'
+sentry = Sentry(app)
 
 if __name__ == '__main__':
     app.run()
