@@ -40,5 +40,5 @@ class Playlist:
     def from_json(self, json_data):
         data = json.loads(json_data)
         pl = Playlist(data['name'], data['url'])
-        pl.tracks = [Track(td) for td in data['tracks']]
+        pl.tracks = [Track(**td) for td in data['tracks']]
         return pl
