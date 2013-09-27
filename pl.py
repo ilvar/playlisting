@@ -30,7 +30,7 @@ def gmaa_move():
     playlist_id = api.create_playlist(pl.name)
 
     for t in pl.tracks:
-        tracks = api.search_all_access(u'"%s" - "%s", "%s"' % (t.title, t.album, t.artist), 1)
+        tracks = api.search_all_access(u'%s - %s' % (t.artist, t.title), 1)
         track_ids = [t['nid'] for t in tracks['song_hits']]
         api.add_songs_to_playlist(playlist_id, track_ids)
 
