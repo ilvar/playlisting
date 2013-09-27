@@ -38,7 +38,7 @@ def gmaa_move():
 
 app.debug = True
 
-app.config['SENTRY_DSN'] = 'https://4e029df0c6dc4b0497add266d2666b6f:28cf80654387491697b110c61d0d055e@app.getsentry.com/13423'
+app.config['SENTRY_DSN'] = 'https://99a69ccb434443b1af6d0e313054fa27:80914e5beb8c48ec986115c691b71829@app.getsentry.com/13587'
 sentry = Sentry(app)
 
 if __name__ == '__main__':
