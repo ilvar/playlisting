@@ -20,11 +20,12 @@ class Track:
 class Playlist:
     name = ''
     url = 'http://'
-    tracks = []
+    tracks = None
 
     def __init__(self, playlist_name, url):
         self.name = playlist_name
         self.url = url
+        self.tracks = []
 
     def add_track(self, track):
         self.tracks.append(track)
