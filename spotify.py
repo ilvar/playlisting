@@ -65,7 +65,7 @@ def get_spotify_playlist(playlist):
 
         track['title'], track['artist_url'], track['artist'], track['album_url'], track['album'] = matches.groups()
         title, artist, album = map(
-            html_parser.unescape,
+            lambda s: html_parser.unescape(s.decode('utf-8', 'xmlcharrefreplace')),
             (track['title'], track['artist'], track['album'])
         )
 
