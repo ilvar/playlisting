@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from gmusicapi import CallFailure
 
 from playlists import Playlist
 from spotify import get_spotify_playlist
@@ -30,9 +31,13 @@ def gmaa_move():
     playlist_id = api.create_playlist(pl.name)
 
     for t in pl.tracks:
-        tracks = api.search_all_access(u'%s - %s' % (t.artist, t.title), 1)
-        track_ids = [t['track']['nid'] for t in tracks['song_hits']]
-        api.add_songs_to_playlist(playlist_id, track_ids)
+        try:
+            tracks = api.search_all_access(u'%s - %s' % (t.artist, t.title), 1)
+        except CallFailure:
+            continue
+        else:
+            track_ids = [t['track']['nid'] for t in tracks['song_hits']]
+            api.add_songs_to_playlist(playlist_id, track_ids)
 
     return render_template('ok.html', pl=pl)
 
