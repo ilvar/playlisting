@@ -70,7 +70,7 @@ def get_spotify_playlist(playlist):
         )
 
         pl.add_track(
-            Track(title.decode('utf8', 'ignore'), album.decode('utf8', 'ignore'), artist.decode('utf8', 'ignore'))
+            Track(title, album, artist)
         )
 
     return pl
