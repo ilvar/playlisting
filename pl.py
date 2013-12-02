@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from gmusicapi import CallFailure
 
 from playlists import Playlist
@@ -17,7 +17,10 @@ def index():
 
 @app.route("/spotify/import", methods=['POST'])
 def spotify_import():
-    pl = get_spotify_playlist(request.form['spotify_url'])
+    try:
+        pl = get_spotify_playlist(request.form['spotify_url'])
+    except AttributeError:
+        return redirect('/')
     return render_template('playlist.html', pl=pl)
 
 @app.route("/gmaa/move", methods=['POST'])
